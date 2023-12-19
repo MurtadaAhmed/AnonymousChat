@@ -1,0 +1,12 @@
+.chat__item__container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /* Add a background color if needed */
+    padding: 10px; /* Add padding as needed */
+    box-sizing: border-box;
+  }
+
+body {
+  background-color: lightgray;
+}
