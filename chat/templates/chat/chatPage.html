@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    {% load static %}
+    <title>Anonymous Chat</title>
+
     <link rel="stylesheet" href="{% static 'style.css' %}" />
   </head>
 
@@ -13,19 +14,18 @@
 
     <button id="startChat" style="font-size: large">Start Chat</button>
 
-    <div id="current_user"></div>
+    <div id="currentUser"></div>
     <div id="messages"></div>
     <br />
     <div
-      class="chat__item__container"
-      id="id_chat_item_container"
+      id="chatContainer"
       style="display: none"
     >
-      <input type="text" id="id_message_send_input" />
-      <button type="submit" id="id_message_send_button">Send Message</button>
+      <input type="text" id="messageInput" placeholder="Type a message" />
+      <button type="submit" id="SendMessageButton">Send Message</button>
       <br /><br />
     </div>
 
-    <script src="{% static 'app2.js' %}"></script>
+    <script src="{% static 'app.js' %}"></script>
   </body>
 </html>
