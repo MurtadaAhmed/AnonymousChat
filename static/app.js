@@ -1,9 +1,19 @@
 window.onload = function () {
 let startChat = document.getElementById("startChat");
 startChat.addEventListener("click", function (e) {
+  document.getElementById("messages").style.display = "block"; // display the chat container
   e.currentTarget.style.display = "none"; // hide the startchat button
   // generating the random username
-  const currentUser = "Anonymous_" + Math.floor(Math.random() * 1000000);
+  let anonNames = [
+      "Weirdoo", "CrazyEyes", "FunnyBunny", "SillyChatter", "Googler", "Bubbly", "Geeky", "JokerFace", "NightOwk",
+        "SillyGoose", "WeakGamer", "CrazyCat", "SillyKitty", "Noobie", "BluePanda", "BananaHead", "TheEyeOfTheTiger",
+      "VisionOfChat"]
+  // randomly select a name
+  function randomSelect() {
+    return anonNames[(Math.floor(Math.random() * anonNames.length))];
+  }
+
+  const currentUser = randomSelect();
   // display the chat container
   document.getElementById("chatContainer").style.display = "";
   document.querySelector("#currentUser").textContent =
@@ -49,13 +59,24 @@ function connect() {
   // handling view of the received messages
   chatSocket.onmessage = function (e) {
     const data = JSON.parse(e.data);
-
+    if (!data.message){ // if the message is empty, do nothing
+        return;
+    }
     const divUserNameAndMessage = document.createElement("div");
     // displaying the username of the sender as "You" to the same sender, else displaying the random username
-    const displayedUsername =
-      data.username === currentUser ? "You" : data.username;
-    divUserNameAndMessage.innerHTML =
-      "<strong>" + displayedUsername + "</strong>: " + data.message;
+    let displayedUsername = ""
+    if (data.username === undefined){
+        displayedUsername = "System";
+    } else {
+      displayedUsername = data.username === currentUser ? "You" : data.username;
+    }
+
+    if (displayedUsername === data.username){
+      divUserNameAndMessage.innerHTML = "<div class='FirstUserNameColor'>" + displayedUsername  +"</div>"+": " +  data.message;
+    } else {
+      divUserNameAndMessage.innerHTML = "<div class='SecondUserNameColor'>"  + displayedUsername + "</div> "+ ": " + data.message ;
+    }
+
 
     document.querySelector("#messages").appendChild(divUserNameAndMessage); // appending the message to the chat container
   };

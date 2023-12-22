@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SignUp</title>
+</head>
+<body>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Username"><br>
+    <input type="email" name="email" placeholder="email"><br>
+    <input type="password" name="password1" placeholder="Password"><br>
+    <input type="password" name="password2" placeholder="Repeat the password"><br>
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <p>{{ error|escape }}</p>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+    <button type="submit" name="submit">Sign up</button>
+</form>
+</body>
+</html>

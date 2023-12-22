@@ -10,9 +10,27 @@
   </head>
 
   <body>
-    <h1>Welcome to chat website!</h1>
+    <div class="mainContainer">
+        <h1 class="logo"><a href="{% url "chat-page" %}">Anonymous Chat</a> </h1>
+        <button id="startChat">Start Chat</button>
+{#         login/logout functionality#}
+{#        <div class="loginLogout">#}
+{#            {% if request.user.is_authenticated %}#}
+{#        <form method="post" action="{% url 'logout' %}">#}
+{#            {% csrf_token %}#}
+{#             <button type="submit">Logout</button>#}
+{#        </form>#}
+{#            {% else %}#}
+{#        <a href="{% url 'login' %}">Login</a>#}
+{#        <a href="{% url 'signup' %}">SignUp</a>#}
+{#        {% endif %}#}
+{##}
+{#        </div>#}
 
-    <button id="startChat" style="font-size: large">Start Chat</button>
+
+    </div>
+
+
 
     <div id="currentUser"></div>
     <div id="messages"></div>

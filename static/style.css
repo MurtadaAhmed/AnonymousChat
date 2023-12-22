@@ -4,9 +4,106 @@
     width: 100%;
     /* Add a background color if needed */
     padding: 10px; /* Add padding as needed */
+    margin: 20px;
     box-sizing: border-box;
+    text-align: center;
   }
 
 body {
-  background-color: lightgray;
+    background-color: lightgray;
+    padding: 5px;
+    margin: 5px;
+    box-sizing: border-box;
+    font-family: "Segoe UI", system-ui, sans-serif;
 }
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    color: #006b1b;
+    font-size: 50px;
+    text-align: center;
+    padding-top: 0;
+    text-decoration: none;
+}
+.logo a {
+    color: #006b1b;
+    text-decoration: none;
+}
+
+#startChat {
+    background-color: #006b1b;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 30px auto 30px;
+    transition: background-color 0.3s ease;
+
+}
+#startChat:hover {
+    background-color: #004d14; /* New color when hovering */
+}
+
+
+#messages {
+    background-color: #dadada;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    box-sizing: border-box;
+    height: 400px;
+    overflow-y: scroll;
+    display: none;
+}
+
+div.FirstUserNameColor {
+    color: #04f840;
+    font-weight: bold;
+    display: inline-block;
+
+}
+
+div.SecondUserNameColor {
+    color: #d9d9d9;
+    font-weight: bold;
+    display: inline-block;
+}
+
+
+
+/*{% load static %}*/
+/*<!DOCTYPE html>*/
+/*<html lang="en">*/
+/*  <head>*/
+/*    <meta charset="UTF-8" />*/
+/*    <meta name="viewport" content="width=device-width, initial-scale=1.0" />*/
+/*    <title>Anonymous Chat</title>*/
+
+/*    <link rel="stylesheet" href="{% static 'style.css' %}" />*/
+/*  </head>*/
+
+/*  <body>*/
+/*    <h1 class="logo">Anonymous Chat</h1>*/
+
+/*    <button id="startChat">Start Chat</button>*/
+
+/*    <div id="currentUser"></div>*/
+/*    <div id="messages"></div>*/
+/*    <br />*/
+/*    <div*/
+/*      id="chatContainer"*/
+/*      style="display: none"*/
+/*    >*/
+/*      <input type="text" id="messageInput" placeholder="Type a message" />*/
+/*      <button type="submit" id="SendMessageButton">Send Message</button>*/
+/*      <br /><br />*/
+/*    </div>*/
+
+/*    <script src="{% static 'app.js' %}"></script>*/
+/*  </body>*/
+/*</html>*/

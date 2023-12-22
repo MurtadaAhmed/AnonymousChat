@@ -4,25 +4,13 @@ document.getElementById("startChat").addEventListener("click", function () {
   document.getElementById("id_chat_item_container").style.display = "";
   document.querySelector("#current_user").textContent =
     "Your name: " + currentUser;
-  
-
-
-
-var reconnectInterval = 5000; // Reconnect every 5 seconds
-
-function connect() {
-
-  const chatSocket = new WebSocket("wss://" + window.location.host + "/");
-
-
-
+  const chatSocket = new WebSocket("ws://" + window.location.host + "/");
   chatSocket.onopen = function (e) {
     console.log("The connection was established");
   };
 
   chatSocket.onclose = function (e) {
     console.log("The connection was closed");
-    setTimeout(connect, reconnectInterval);
   };
 
   document.querySelector("#id_message_send_input").focus();
@@ -54,14 +42,4 @@ function connect() {
     document.querySelector("#id_message_send_input").value = "";
     document.querySelector("#messages").appendChild(div);
   };
-
-}
-
-connect()
-
-
-
-
-
-
 });
