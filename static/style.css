@@ -63,7 +63,10 @@ body {
     box-sizing: border-box;
     height: 400px;
     overflow-y: scroll;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
     display: none;
+
 }
 
 div.FirstUserNameColor {
