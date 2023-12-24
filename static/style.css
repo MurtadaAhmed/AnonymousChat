@@ -7,6 +7,11 @@
     margin: 20px;
     box-sizing: border-box;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+
   }
 
 body {
@@ -62,48 +67,41 @@ body {
 }
 
 div.FirstUserNameColor {
-    color: #04f840;
+    color: #009a24;
     font-weight: bold;
     display: inline-block;
 
 }
 
 div.SecondUserNameColor {
-    color: #d9d9d9;
+    color: #4f93fa;
     font-weight: bold;
     display: inline-block;
 }
 
+#SendMessageButton, #disconnectButton {
+    background-color: #006b1b;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+}
 
+#disconnectButton {
+    background-color: #ff2f2f;
+}
 
-/*{% load static %}*/
-/*<!DOCTYPE html>*/
-/*<html lang="en">*/
-/*  <head>*/
-/*    <meta charset="UTF-8" />*/
-/*    <meta name="viewport" content="width=device-width, initial-scale=1.0" />*/
-/*    <title>Anonymous Chat</title>*/
+#messageInput {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 20px;
+    display: block;
+    margin: 10px auto;
 
-/*    <link rel="stylesheet" href="{% static 'style.css' %}" />*/
-/*  </head>*/
-
-/*  <body>*/
-/*    <h1 class="logo">Anonymous Chat</h1>*/
-
-/*    <button id="startChat">Start Chat</button>*/
-
-/*    <div id="currentUser"></div>*/
-/*    <div id="messages"></div>*/
-/*    <br />*/
-/*    <div*/
-/*      id="chatContainer"*/
-/*      style="display: none"*/
-/*    >*/
-/*      <input type="text" id="messageInput" placeholder="Type a message" />*/
-/*      <button type="submit" id="SendMessageButton">Send Message</button>*/
-/*      <br /><br />*/
-/*    </div>*/
-
-/*    <script src="{% static 'app.js' %}"></script>*/
-/*  </body>*/
-/*</html>*/
+}

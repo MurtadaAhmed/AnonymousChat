@@ -13,17 +13,29 @@ startChat.addEventListener("click", function (e) {
     return anonNames[(Math.floor(Math.random() * anonNames.length))];
   }
 
-  const currentUser = randomSelect();
+  let currentUser = randomSelect();
+  let chatSocket;
   // display the chat container
   document.getElementById("chatContainer").style.display = "";
   document.querySelector("#currentUser").textContent =
     "Your name: " + currentUser;
 
-  const reconnectInterval = 5000; // Reconnect every 5 seconds after the connection closes
+  const reconnectInterval = 1000;
+  let shouldReconnect = true;
+function reset() {
+    if (chatSocket) {
+      shouldReconnect = false;
+      chatSocket.close();
+    }
+    document.getElementById("messages").innerHTML = ""; // clear the messages
+    currentUser = randomSelect(); // generate a new random username
+    document.querySelector("#currentUser").textContent = "Your name: " + currentUser; // update the displayed username
 
+    connect()
+  }
 function connect() {
  // creating the websocket connection (to be changed to wss:// if using https)
-  const chatSocket = new WebSocket("wss://" + window.location.host + "/");
+  chatSocket = new WebSocket("wss://" + window.location.host + "/");
 
   chatSocket.onopen = function (e) {
     console.log("The connection was established");
@@ -32,7 +44,10 @@ function connect() {
   // handling the connection close message and reconnecting based on the reconnectInterval
   chatSocket.onclose = function (e) {
     console.log("The connection was closed");
-    setTimeout(connect, reconnectInterval);
+    if (shouldReconnect) {
+        setTimeout(connect, reconnectInterval);
+    }
+
   };
 
   // focusing on the input field
@@ -78,10 +93,20 @@ function connect() {
     }
 
 
+
     document.querySelector("#messages").appendChild(divUserNameAndMessage); // appending the message to the chat container
+    scrollToBottom();
+    function scrollToBottom() {
+    document.querySelector("#messages").scrollTop = document.querySelector("#messages").scrollHeight;
+}
   };
 
 }
+
+let disconnectButton = document.getElementById("disconnectButton");
+    disconnectButton.addEventListener("click", function (e) {
+      reset();
+    });
 
 connect()
 });
