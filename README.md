@@ -75,7 +75,7 @@ python manage.py runserver
 AnonymousChat should now be accessible at http://localhost:8000/.
 
 B. To deploy the application on production environment:
-The included web.config file contain the basic setup for Windows Server IIS server.
+The included web.config file contains the basic setup for Windows Server IIS server.
 
 Requirements:
 - requirements.txt
