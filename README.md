@@ -29,8 +29,6 @@
 
 ## About The Project
 
-![Screen Shot](images/screenshot.png)
-
 AnonymousChat is a web application that allows users to chat anonymously. It generates anonymous usernames for the users and matches one2one chat based on waiting users in the queue. No registration required. This project is based on Django, Channels, and Daphne. 
 
 ## Built With
