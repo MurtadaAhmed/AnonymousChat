@@ -1,10 +1,8 @@
 {% load static %}
 
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Anonymous Chat</title>
@@ -13,6 +11,7 @@
   </head>
 
   <body>
+    <header>
     <div class="mainContainer">
         <h1 class="logo"><i class="bi bi-chat-dots-fill"></i>
             <a href="{% url "chat-page" %}">Anonymous Chat</a> </h1>
@@ -33,9 +32,9 @@
 
 
     </div>
+    </header>
 
-
-
+    <main>
     <div id="currentUser"></div>
     <div id="messages"></div>
     <br />
@@ -52,7 +51,7 @@
 
       <br /><br />
     </div>
-
+    </main>
     <script src="{% static 'app.js' %}"></script>
   </body>
 </html>

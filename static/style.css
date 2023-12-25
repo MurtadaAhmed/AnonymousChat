@@ -11,7 +11,6 @@
     flex-direction: column;
     align-content: center;
     justify-content: center;
-
   }
 
 body {
@@ -66,14 +65,12 @@ body {
     word-wrap: break-word;
     overflow-wrap: break-word;
     display: none;
-
 }
 
 div.FirstUserNameColor {
     color: #009a24;
     font-weight: bold;
     display: inline-block;
-
 }
 
 div.SecondUserNameColor {
@@ -106,5 +103,4 @@ div.SecondUserNameColor {
     font-size: 20px;
     display: block;
     margin: 10px auto;
-
 }
