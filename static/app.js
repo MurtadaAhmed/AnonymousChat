@@ -105,8 +105,10 @@ startChat.addEventListener("click", function (e) {
     }
 
     // adding the username and the message to the div, styling the username color of users differently using CSS classes
-    if (displayedUsername === data.username){
-      divUserNameAndMessage.innerHTML = "<div class='FirstUserNameColor'>" + displayedUsername  +"</div>"+": " +  data.message;
+    if (data.username === undefined) {
+        divUserNameAndMessage.innerHTML = "<div class='SystemUserNameColor'>" + displayedUsername + "</div>" + ": " + data.message;
+    } else if (data.username === currentUser) {
+        divUserNameAndMessage.innerHTML = "<div class='FirstUserNameColor'>" + displayedUsername  +"</div>"+": " +  data.message;
     } else {
       divUserNameAndMessage.innerHTML = "<div class='SecondUserNameColor'>"  + displayedUsername + "</div> "+ ": " + data.message ;
     }
