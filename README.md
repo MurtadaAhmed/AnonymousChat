@@ -1,12 +1,7 @@
 # AnonymousChat (under development)
-
-A simple chat app based on django, channels and daphne.
-
-
-![1](https://github.com/MurtadaAhmed/AnonymousChat/assets/108568451/b188eff9-8d8c-4e30-9d81-ddf9716add2d)
-
-
-<br/>
+<p align="center">
+  <img src="https://github.com/MurtadaAhmed/AnonymousChat/assets/108568451/b188eff9-8d8c-4e30-9d81-ddf9716add2d" alt="AnonymousChat" />
+</p>
 
 <p align="center">
   
