@@ -79,6 +79,12 @@ div.SecondUserNameColor {
     display: inline-block;
 }
 
+div.SystemUserNameColor {
+    color: #ff2f2f;
+    font-weight: bold;
+    display: inline-block;
+}
+
 #SendMessageButton, #disconnectButton {
     background-color: #006b1b;
     color: white;
