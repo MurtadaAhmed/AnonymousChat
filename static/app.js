@@ -1,9 +1,17 @@
 window.onload = function () {
 let startChat = document.getElementById("startChat");
+document.getElementById("nameInput").focus();
+document.getElementById("nameInput").onkeyup = function (e) {
+    if (e.key === "Enter") {
+        startChat.click();
+    }
+}
 startChat.addEventListener("click", function (e) {
+    let optionalName = document.getElementById("nameInput").value;
+
   document.getElementById("messages").style.display = "block"; // display the chat container
   e.currentTarget.style.display = "none"; // hide the startchat button
-
+    document.getElementById("nameInput").style.display = "none"; // hide the name input field
 
   // generating the random username
   let anonNames = [
@@ -14,7 +22,13 @@ startChat.addEventListener("click", function (e) {
   function randomSelect() {
     return anonNames[(Math.floor(Math.random() * anonNames.length))];
   }
-  let currentUser = randomSelect();
+  let currentUser;
+  if (!optionalName){
+      currentUser = randomSelect();
+  } else {
+        currentUser = optionalName + Math.floor(Math.random() * 1000);
+  }
+
 
 
   let chatSocket;
@@ -38,7 +52,9 @@ startChat.addEventListener("click", function (e) {
           chatSocket.close();
         }
         document.getElementById("messages").innerHTML = ""; // clear the messages
-        currentUser = randomSelect(); // generate a new random username
+        if (!optionalName) {
+            currentUser = randomSelect(); // generate a new random username
+        }
         document.querySelector("#currentUser").textContent = "Your name: " + currentUser; // update the displayed username
 
         connect() // call the connect function to create a new websocket connection

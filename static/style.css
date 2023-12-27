@@ -53,6 +53,17 @@ body {
     background-color: #004d14; /* New color when hovering */
 }
 
+#nameInput {
+    width: 20%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 20px;
+    display: block;
+    margin: 10px auto;
+}
+
 
 #messages {
     background-color: #dadada;
