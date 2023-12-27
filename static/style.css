@@ -112,12 +112,77 @@ div.SystemUserNameColor {
 }
 
 #messageInput {
-    width: 80%;
-    padding: 10px;
+    width: 100%;
+    /*padding: 10px;*/
     border: none;
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 20px;
-    display: block;
     margin: 10px auto;
+    padding-right: 40px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#inputWrapper {
+    position: relative;
+    display: inline-block;
+    width: 80%;
+    margin: 10px auto;
+}
+
+#emojiButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+
+    display: inline-block;
+    font-size: 25px;
+    border: none;
+    background-color: transparent;
+
+
+
+}
+#emojiButton:hover {
+    cursor: pointer;
+
+
+}
+
+#emojiDropdown {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-wrap: wrap;
+
+
+}
+.emoji {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 25px;
+    /*margin: 5px;*/
+}
+
+.emoji, #emojiButton {
+    transition: opacity 0.3s ease;
+}
+
+.emoji:hover, #emojiButton:hover {
+    opacity: 0.8;
+}
+
+.message {
+    font-size: 20px;
 }

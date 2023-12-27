@@ -1,4 +1,13 @@
 window.onload = function () {
+// hiding the emoji dropdown when clicking outside of it
+    window.addEventListener('click', function(e) {
+    const emojiDropdown = document.getElementById('emojiDropdown');
+    const emojiButton = document.getElementById('emojiButton');
+    if (!emojiDropdown.contains(e.target) && e.target !== emojiButton) {
+        emojiDropdown.style.display = 'none';
+    }
+});
+
 let startChat = document.getElementById("startChat");
 document.getElementById("nameInput").focus();
 document.getElementById("nameInput").onkeyup = function (e) {
@@ -81,6 +90,21 @@ startChat.addEventListener("click", function (e) {
   // focusing on the input field
   document.querySelector("#messageInput").focus();
 
+  // EMOJIS
+    document.getElementById("emojiButton").addEventListener("click", () => {
+        if (document.getElementById("emojiDropdown").style.display === "block") {
+            document.getElementById("emojiDropdown").style.display = "none";
+            return;
+        }
+        document.getElementById("emojiDropdown").style.display = "block";
+    })
+
+    document.querySelectorAll(".emoji").forEach(emoji => {
+        emoji.addEventListener("click", event => {
+            document.getElementById("messageInput").value += event.target.textContent;
+            document.getElementById("emojiDropdown").style.display = "none";
+        })
+    })
 
   // handling pressing the enter key to send the message
   document.querySelector("#messageInput").onkeyup = function (e) {
@@ -111,6 +135,7 @@ startChat.addEventListener("click", function (e) {
     }
 
     const divUserNameAndMessage = document.createElement("div");
+    divUserNameAndMessage.className = "message";
     // displaying the username of the sender as "You" to the same sender, else displaying the random username
     // if the username is undefined, it means that the message is a system message, so displaying "System" as the username
     let displayedUsername = ""
