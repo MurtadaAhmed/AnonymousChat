@@ -10,7 +10,8 @@ window.onload = function () {
     }
 });
 
-    let audio = new Audio("/static/notification.mp3");
+    let systemAudio = new Audio("/static/notification.mp3");
+    let userAudio = new Audio("/static/meownotification.mp3");
 
 let startChat = document.getElementById("startChat");
 document.getElementById("nameInput").focus();
@@ -224,9 +225,11 @@ startChat.addEventListener("click", function (e) {
 }
 
         // playing the notification sound when receiving a message
-      if(!(data.username === currentUser)) {
-          audio.play();
+      if(data.username === undefined) {
+          systemAudio.play();
 
+      } else if (data.username !== currentUser) {
+          userAudio.play();
       }
 
   };
