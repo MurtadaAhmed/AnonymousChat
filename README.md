@@ -39,9 +39,9 @@ Python with Django framework, Channels and Daphne Asgi server, JavaScript.
 ## Getting Started
 <img src="https://github.com/MurtadaAhmed/AnonymousChat/assets/108568451/fa77aed8-2b77-4d55-b5a1-3a35a085e87c" alt="AnonymousChat" />
 
-![image](https://github.com/MurtadaAhmed/AnonymousChat/assets/108568451/ff39d8c4-a18b-463e-8f98-6c49423bd8b0)
+![image](https://github.com/MurtadaAhmed/AnonymousChat/assets/108568451/d96bd2be-1991-4faf-83d1-58e5400a8fae)
 
-![image](https://github.com/MurtadaAhmed/AnonymousChat/assets/108568451/050c6400-8783-46f7-8f0a-fdbd3e78cdf5)
+![image](https://github.com/MurtadaAhmed/AnonymousChat/assets/108568451/0155bbfb-ea1e-43d0-8612-f94f3a30bc52)
 
 
 ### Installation
