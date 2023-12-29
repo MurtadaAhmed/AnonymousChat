@@ -10,7 +10,7 @@
   <h3 align="center">AnonymousChat</h3>
 
   <p align="center">
-    AnonymousChat is a web application that allows users to chat anonymously. It generates anonymous usernames for the users and matches one2one chat based on waiting users in the queue. No registration required. This project is based on Django, Channels, and Daphne.
+    AnonymousChat is a web application that allows users to chat anonymously. It generates anonymous usernames for the users if no name is entered and matches one2one chat based on waiting users in the queue. No registration required. This project is based on Django and Channels.
     <br/>
     <br/>
   
@@ -30,7 +30,7 @@
 
 ## About The Project
 
-AnonymousChat is a web application that allows users to chat anonymously. It generates anonymous usernames for the users and matches one2one chat based on waiting users in the queue. No registration required. This project is based on Django, Channels, and Daphne. 
+AnonymousChat is a web application that allows users to chat anonymously. It generates anonymous usernames for the users if no name is entered and matches one2one chat based on waiting users in the queue. No registration required. This project is based on Django and Channels.
 
 ## Built With
 
