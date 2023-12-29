@@ -38,7 +38,7 @@
     </header>
 
     <main>
-    <div id="currentUser"></div>
+    <div id="currentUser"> </div>
     <div id="messages"></div>
     <br />
     <div
@@ -51,6 +51,7 @@
         <!-- start emojis -->
 
         <button id="emojiButton">😀</button>
+
 
         <div id="emojiDropdown" style="display: none">
             <button class="emoji" type="button" value="😀">😀</button>
@@ -111,17 +112,24 @@
 
 
         </div>
+
 </div>
+
         <!-- end emojis -->
 
 
+
         <div id="chatContainerButtons">
+            <input type="file" id="imageInput" accept="image/*">
+
       <button type="submit" id="SendMessageButton">Send Message</button>
+            <button id="customImageButton">Upload Image</button>
       <button type="button" id="disconnectButton">Disconnect & Start New Chat</button>
             </div>
 
       <br /><br />
     </div>
+
     </main>
     <script src="{% static 'app.js' %}"></script>
   </body>

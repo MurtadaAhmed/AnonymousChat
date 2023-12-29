@@ -139,8 +139,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def receive(self, text_data):
         # Handle incoming messages from the WebSocket
         text_data_json = json.loads(text_data)
-        message = text_data_json["message"]
-        username = text_data_json["username"]
+        message = text_data_json.get("message")
+        username = text_data_json.get("username")
+        image = text_data_json.get("image")
 
         # Send the received message to all users in the chat room group
         await self.channel_layer.group_send(
@@ -148,15 +149,18 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 "type": "sendMessage",
                 "message": message,
                 "username": username,
+                "image": image,
             }
         )
 
     async def sendMessage(self, event):
         # Handler for the "sendMessage" event from the chat room group
         # Send the received message to the current user (the same user who sent the message)
-        message = event["message"]
-        username = event["username"]
+        message = event.get("message")
+        username = event.get("username")
+        image = event.get("image")
         await self.send(text_data=json.dumps({
             "message": message,
             "username": username,
+            "image": image,
         }))

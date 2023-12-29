@@ -1,3 +1,5 @@
+let chatSocket;
+let selectedImage;
 window.onload = function () {
 // hiding the emoji dropdown when clicking outside of it
     window.addEventListener('click', function(e) {
@@ -8,6 +10,8 @@ window.onload = function () {
     }
 });
 
+    let audio = new Audio("/static/notification.mp3");
+
 let startChat = document.getElementById("startChat");
 document.getElementById("nameInput").focus();
 document.getElementById("nameInput").onkeyup = function (e) {
@@ -15,6 +19,8 @@ document.getElementById("nameInput").onkeyup = function (e) {
         startChat.click();
     }
 }
+
+
 startChat.addEventListener("click", function (e) {
     let optionalName = document.getElementById("nameInput").value;
 
@@ -40,11 +46,39 @@ startChat.addEventListener("click", function (e) {
 
 
 
-  let chatSocket;
+
+
+
+
+
+  // handling the image upload
+    document.getElementById("imageInput").addEventListener("change", function (e) {
+        let file = e.target.files[0];
+        let reader = new FileReader();
+        reader.onloadend = function () {
+            selectedImage = reader.result;
+        }
+        reader.readAsDataURL(file);
+
+        // change the text of the upload image button to the name of the selected file
+        let fileName = file ? file.name : "Upload Image";
+        // shorten the file name if it's too long
+        if (fileName.length > 10) {
+            fileName = fileName.slice(0, 10) + "...";
+        }
+        document.getElementById("customImageButton").textContent = fileName;
+    })
+
+    document.getElementById("customImageButton").addEventListener("click", function (e) {
+        document.getElementById("imageInput").click();
+    })
+
+
+
   // display the chat container
   document.getElementById("chatContainer").style.display = "";
-  document.querySelector("#currentUser").textContent =
-    "Your name: " + currentUser;
+  document.querySelector("#currentUser").innerHTML =
+    "<i class=\"bi bi-person\"></i>" + " Your name: " + `(${currentUser})`;
 
     // setting the reconnect interval to 1 second if the websocket closes by itself
   const reconnectInterval = 1000;
@@ -121,18 +155,21 @@ startChat.addEventListener("click", function (e) {
       JSON.stringify({
         message: messageInput,
         username: currentUser,
+        image: selectedImage,
       })
     );
     document.querySelector("#messageInput").value = ""; // emptying the input field
+    selectedImage = null; // emptying the selected image
+    document.getElementById("imageInput").value = ""; // emptying the image input field
+    document.getElementById("customImageButton").textContent = "Upload Image"; // resetting the upload image button text
   };
 
 
   // handling view of the received messages
   chatSocket.onmessage = function (e) {
     const data = JSON.parse(e.data);
-    if (!data.message){ // if the message is empty, do nothing
-        return;
-    }
+
+
 
     const divUserNameAndMessage = document.createElement("div");
     divUserNameAndMessage.className = "message";
@@ -142,16 +179,39 @@ startChat.addEventListener("click", function (e) {
     if (data.username === undefined){
         displayedUsername = "System";
     } else {
-      displayedUsername = data.username === currentUser ? "You" : data.username;
+      displayedUsername = data.username === currentUser ? `${currentUser} (You)` : data.username;
     }
 
+    // handling the image message
+      let img = null;
+        let link = null;
+      if (data.image) {
+            img = document.createElement("img");
+            img.src = data.image;
+            img.width = 400;
+            link = document.createElement("a");
+            link.href = data.image;
+            link.target = "_blank";
+            link.appendChild(img);
+      }
+
+
+
+    if (!data.message && !data.image){ // if the message is empty, do nothing
+        return;
+    }
     // adding the username and the message to the div, styling the username color of users differently using CSS classes
     if (data.username === undefined) {
-        divUserNameAndMessage.innerHTML = "<div class='SystemUserNameColor'>" + displayedUsername + "</div>" + ": " + data.message;
+        divUserNameAndMessage.innerHTML = "<div class='SystemUserNameColor'>" + displayedUsername + "</div>" + ": " + data.message ;
     } else if (data.username === currentUser) {
-        divUserNameAndMessage.innerHTML = "<div class='FirstUserNameColor'>" + displayedUsername  +"</div>"+": " +  data.message;
+        divUserNameAndMessage.innerHTML = "<div class='FirstUserNameColor'>" + displayedUsername  +"</div>"+": " +  data.message ;
     } else {
       divUserNameAndMessage.innerHTML = "<div class='SecondUserNameColor'>"  + displayedUsername + "</div> "+ ": " + data.message ;
+    }
+
+    if (link) {
+        divUserNameAndMessage.appendChild(document.createElement("br"));
+        divUserNameAndMessage.appendChild(link);
     }
 
 
@@ -162,6 +222,13 @@ startChat.addEventListener("click", function (e) {
     function scrollToBottom() {
     document.querySelector("#messages").scrollTop = document.querySelector("#messages").scrollHeight;
 }
+
+        // playing the notification sound when receiving a message
+      if(!(data.username === currentUser)) {
+          audio.play();
+
+      }
+
   };
 
 }
@@ -172,5 +239,12 @@ startChat.addEventListener("click", function (e) {
     });
 
     connect() // calling the connect function to create a new websocket connection within startChat event listener
-});
+
+
+
+}
+
+
+
+);
 }
