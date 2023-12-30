@@ -169,7 +169,7 @@ window.onload = function () {
             */
             function connect() {
                 // creating the websocket connection (to be changed to wss:// if using https)
-                chatSocket = new WebSocket("ws://" + window.location.host + "/");
+                chatSocket = new WebSocket("wss://" + window.location.host + "/");
 
                 chatSocket.onopen = function (e) {
                     console.log("The connection was established");
