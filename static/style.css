@@ -4,7 +4,7 @@
     width: 100%;
     /* Add a background color if needed */
     padding: 10px; /* Add padding as needed */
-    margin: 20px;
+    margin: 10px;
     box-sizing: border-box;
     text-align: center;
     display: flex;
@@ -209,4 +209,39 @@ div.SystemUserNameColor {
     transition: background-color 0.3s ease;
     margin: 10px auto;
 
+}
+
+.notificationArea {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+}
+
+#notificationCheckBox {
+    display: none;
+}
+
+label {
+    font-size: 16px;
+    color: #333;
+}
+
+#notificationCheckBox:checked + label::before {
+    content: "\2714";
+    color: #2ecc71;
+    font-size: 18px;
+    margin-right: 5px;
+    border: 1px solid #b6b6b6;
+    border-radius: 5px;
+}
+
+#notificationCheckBox:not(:checked) + label::before {
+    content: "\2718";
+    color: #e74c3c;
+    font-size: 18px;
+    margin-right: 5px;
+    border: 1px solid #b6b6b6;
+    border-radius: 5px;
 }

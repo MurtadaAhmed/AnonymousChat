@@ -1,6 +1,7 @@
 window.onload = function () {
     let systemAudio = new Audio("/static/notification.mp3");
     let userAudio = new Audio("/static/meownotification.mp3");
+    let audioIsEnabled = true;
     let chatSocket;
     let selectedImage;
     let startChat = document.getElementById("startChat");
@@ -10,6 +11,12 @@ window.onload = function () {
             startChat.click();
         }
     }
+
+    /* START OF THE AUDIO CHECKBOX FUNCTIONALITY */
+    document.getElementById("notificationCheckBox").addEventListener("change", function () {
+        audioIsEnabled = this.checked;
+    })
+    /* END OF THE AUDIO CHECKBOX FUNCTIONALITY */
 
     /* START OF THE EMOJI FUNCTIONALITY */
     function emojiFunctionality() {
@@ -255,10 +262,10 @@ window.onload = function () {
                     }
                     scrollToBottom();
 
-                    if (data.username === undefined) {
+                    if (data.username === undefined && audioIsEnabled) {
                         systemAudio.play();
 
-                    } else if (data.username !== currentUser) {
+                    } else if (data.username !== currentUser && audioIsEnabled) {
                         userAudio.play();
                     }
                 };
