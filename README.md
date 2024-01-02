@@ -37,7 +37,7 @@ AnonymousChat is a web application that allows users to chat anonymously. It gen
 Python with Django framework, Channels and Daphne Asgi server, JavaScript.
 
 ## Getting Started
-<img src="https://github.com/MurtadaAhmed/AnonymousChat/assets/108568451/fa77aed8-2b77-4d55-b5a1-3a35a085e87c" alt="AnonymousChat" />
+![image](https://github.com/MurtadaAhmed/AnonymousChat/assets/108568451/94e5af61-5850-4511-90e9-03d6ecb3689d)
 
 ![image](https://github.com/MurtadaAhmed/AnonymousChat/assets/108568451/d96bd2be-1991-4faf-83d1-58e5400a8fae)
 
