@@ -1,6 +1,6 @@
 # AnonymousChat (under development)
 <p align="center">
-  <img src="https://github.com/MurtadaAhmed/AnonymousChat/assets/108568451/fa77aed8-2b77-4d55-b5a1-3a35a085e87c" alt="AnonymousChat" />
+  <img src="https://github.com/MurtadaAhmed/AnonymousChat/assets/108568451/278445d1-76ed-40fd-b7f0-692c3872de9f" alt="AnonymousChat" />
 
 </p>
 
