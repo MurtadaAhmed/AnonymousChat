@@ -1,10 +1,15 @@
 import asyncio
+import base64
+import datetime
 import json
+import os
 import uuid
 
+from channels.db import database_sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
 from django.core.cache import cache
+from .models import Chat
 
 
 class ChatConsumer(AsyncWebsocketConsumer):
@@ -48,7 +53,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
             # Check if the partner is already connected
             if partner_channel_name in connected_users:
-
                 self.room_group_name = partner_room_group_name
 
                 # Add both channels (self.channel_name & partner_channel_name) to the same room group (room_group_name)
@@ -74,7 +78,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 cache.set('waiting_users', self.waiting_users)
 
                 # Exit the connect method since a chat has started
-
 
                 return
 
@@ -136,12 +139,37 @@ class ChatConsumer(AsyncWebsocketConsumer):
         # Inform the current user that their partner has disconnected
         await self.send(text_data=json.dumps({"message": "Your partner has disconnected. You can now close the chat."}))
 
+    @database_sync_to_async
+    def save_message(self, username, message, image, ip_address):
+        # Save the message to the database
+        Chat.objects.create(username=username, message=message, image=image, ip_address=ip_address, group_name=self.room_group_name)
+
     async def receive(self, text_data):
         # Handle incoming messages from the WebSocket
         text_data_json = json.loads(text_data)
         message = text_data_json.get("message")
         username = text_data_json.get("username")
-        image = text_data_json.get("image")
+        image = text_data_json.get("image", None)
+        ip_address = self.scope['client'][0]
+        image_path = None
+        if image:
+            image_decoded = base64.b64decode(image.split(",")[1])
+            image_name = f"image_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.jpg"
+            image_path = os.path.join("media", "chat_images", image_name)
+
+            # Create directories if they don't exist
+            os.makedirs(os.path.dirname(image_path), exist_ok=True)
+
+            with open(image_path, "wb") as image_file:
+                image_file.write(image_decoded)
+
+            # Get the relative path from the "media" directory
+            image_path = os.path.relpath(image_path, "media")
+            image_path = image_path.replace("\\", "/")
+
+
+        # Save the message to the database
+        await self.save_message(username, message, image_path, ip_address)
 
         # Send the received message to all users in the chat room group
         await self.channel_layer.group_send(
@@ -150,6 +178,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 "message": message,
                 "username": username,
                 "image": image,
+                "timestamp": str(datetime.datetime.now()),
+                "ip_address": "ip_address",
             }
         )
 
