@@ -63,8 +63,9 @@ default password: password
 
 The setup will create a file "run.sh". To re-run the server again after stopping it:
 
+```
 ./run.sh
-
+```
 
 A. To run the AnonymousChat application locally, follow these steps:
 
