@@ -31,4 +31,6 @@ echo "nohup sudo uvicorn ChatApp.asgi:application --host 0.0.0.0 --port 80 &" > 
 chmod +x run.sh
 
 # Run the Uvicorn server
+
 ./run.sh
+
