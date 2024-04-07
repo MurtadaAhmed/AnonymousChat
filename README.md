@@ -47,6 +47,25 @@ Python with Django framework, Channels and Daphne Asgi server, JavaScript.
 
 ### Installation
 
+**Automatic deployment on linux server using setup.sh:**
+
+```
+sudo -s
+git clone https://github.com/MurtadaAhmed/AnonymousChat.git
+cd AnonymousChat
+chmod +x setup.sh
+./setup.sh
+```
+
+default username: admin
+
+default password: password
+
+The setup will create a file "run.sh". To re-run the server again after stopping it:
+
+./run.sh
+
+
 A. To run the AnonymousChat application locally, follow these steps:
 
 // These steps suggests that you already have Python installed
