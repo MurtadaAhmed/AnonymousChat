@@ -16,6 +16,9 @@ fi
 # Install the Python dependencies
 pip install -r requirements.txt
 
+# Install the required WebSocket support for uvicorn
+pip install 'uvicorn[standard]'
+
 # Run Django management commands
 $PYTHON manage.py makemigrations
 $PYTHON manage.py migrate
