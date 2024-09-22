@@ -1,6 +1,7 @@
 window.onload = function () {
-    let systemAudio = new Audio("/static/notification.mp3");
-    let userAudio = new Audio("/static/meownotification.mp3");
+    let systemAudio = new Audio("https://" + window.location.host + "/static/notification.mp3");
+    let userAudio = new Audio("https://" + window.location.host + "/static/meownotification.mp3");
+
     let audioIsEnabled = true;
     let chatSocket;
     let selectedImage;
@@ -175,8 +176,8 @@ window.onload = function () {
                 - Playing the notification sound when receiving a message.
             */
             function connect() {
-                // creating the websocket connection (to be changed to wss:// if using https)
-                chatSocket = new WebSocket("ws://" + window.location.host + "/");
+                // creating the websocket connection ws:// (to be changed to wss:// if using https)
+                chatSocket = new WebSocket("wss://" + window.location.host + "/");
 
                 chatSocket.onopen = function (e) {
                     console.log("The connection was established");

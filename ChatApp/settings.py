@@ -21,11 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-gug274h^0)6=-0_6pm!1abfmk4t48hnx2=6*=-gx=q7ekqwl!f'
-
+CSRF_TRUSTED_ORIGINS = ['https://chat.murti.website']
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['chat.murti.website', 'localhost', '127.0.0.1', 'django_app', 'chat_app']
+
 
 # Application definition
 
