@@ -8,6 +8,9 @@ FROM python:3.9-slim
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
+# environment variable for CSRF_TRUSTED_ORIGINS.
+ENV CSRF_TRUSTED_ORIGINS=""
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y sudo git dos2unix && apt-get clean
 

@@ -21,7 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-gug274h^0)6=-0_6pm!1abfmk4t48hnx2=6*=-gx=q7ekqwl!f'
-# CSRF_TRUSTED_ORIGINS = ['https://chat.murti.website']
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
