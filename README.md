@@ -49,7 +49,7 @@ Python with Django framework, Channels and Daphne Asgi server, JavaScript.
 
 ### Installation
 
-**Automatic deployment on linux server using setup.sh:**
+**1. Automatic deployment on linux server using setup.sh:**
 
 ```
 sudo -s
@@ -58,6 +58,7 @@ cd AnonymousChat
 chmod +x setup.sh
 ./setup.sh
 ```
+CSRF_TRUSTED_ORIGINS environment variable need to be passed with the website url.
 
 default username: admin
 
@@ -69,7 +70,23 @@ The setup will create a file "run.sh". To re-run the server again after stopping
 ./run.sh
 ```
 
-A. To run the AnonymousChat application locally, follow these steps:
+**2. Automatic deployment using Docker:**
+
+Build docker image:
+```commandline
+docker build -t anonymous-chat -f Dockerfile .
+```
+
+When running the docker container, when need to pass the environment variable CSRF_TRUSTED_ORIGINS for the website url:
+```commandline
+docker run --name anonymous-chat -p 80:80 -e CSRF_TRUSTED_ORIGINS=https://YOUR_WEBSITE_LINK
+```
+
+default username: admin
+default password: password
+
+
+**3. To run the AnonymousChat application locally, follow these steps:**
 
 // These steps suggests that you already have Python installed
 
@@ -106,7 +123,7 @@ python manage.py runserver
 
 AnonymousChat should now be accessible at http://localhost:8000/.
 
-B. To deploy the application on production environment:
+**4. To deploy the application on Windows server:**
 The included web.config file contains the basic setup for Windows Server IIS server.
 
 Requirements:
