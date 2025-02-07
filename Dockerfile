@@ -2,6 +2,7 @@
 # docker run --name anonymous-chat -p 80:80 anonymous-chat
 # uvicorn ChatApp.asgi:application --host 0.0.0.0 --port 80
 # daphne -b 0.0.0.0 -p 8000 ChatApp.asgi:application
+# example with environment variable: docker run --name anonymous-chat -p 80:80 -e CSRF_TRUSTED_ORIGINS=https://anonymouschat-m4mm.onrender.com
 FROM python:3.9-slim
 
 # Set environment variables to prevent Python from buffering stdout/stderr
